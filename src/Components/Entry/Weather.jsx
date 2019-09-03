@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const Weather = () => {
+
+class Weather extends Component {
+  render() {
     return (
-        <div>
+      <div className='container border'>
 
-        </div>
+      </div>
     )
+  }
+
 }
+
 
 export default Weather

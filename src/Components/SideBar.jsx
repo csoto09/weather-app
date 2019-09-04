@@ -23,6 +23,7 @@ class SideBar extends React.Component {
             label={city.label}
             lat={city.lat}
             lng={city.lng}
+            setActiveEntry={this.props.setActiveEntry}
           />
         )}
       </div>

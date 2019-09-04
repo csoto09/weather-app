@@ -6,8 +6,12 @@ const apiKey = '9f4323d819dc7235993a1267bd398f3c'
 
 class Entry extends Component {
   state = {
+    currentWeather: '',
+    daily: '',
+    hourly: '',
     temp: '',
-    active: false
+    summary: ''
+    // active: false
   }
 
   componentDidMount() {
@@ -28,13 +32,13 @@ class Entry extends Component {
   }
 
   handleClick = () => {
-    this.setState({ active: true })
+    this.props.setActiveEntry(this.props.label, this.state.currentWeather, this.state.hourly, this.state.daily)
   }
 
   render() {
     return (
       <Card onClick={this.handleClick}>
-        <Card.Body className={this.state.active ? 'text-info' : ''}>
+        <Card.Body>
           <div>{this.props.name ? this.props.name : this.props.label}: {Math.round(this.state.temp) + '\u00B0'}F</div>
           <div>{this.state.summary}</div>
         </Card.Body>

@@ -3,16 +3,20 @@ import './App.css';
 import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
 import SideBar from './Components/SideBar'
-import Jumbotron from 'react-bootstrap/Jumbotron'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import axios from 'axios'
+import Main from './Components/Main'
 const appId = 'xC6hMe06E2DQgu96GwYz'
 const appCode = 'xY0cgxHjRBvenfTSFF_y2A'
 
 class App extends Component {
   state = {
-    cities: []
+    cities: [],
+    activeEntry: '',
+    currentWeather: '',
+    hourly: '',
+    daily: ''
   }
 
   selectCity = (val) => {
@@ -41,7 +45,14 @@ class App extends Component {
         console.log(err);
       });
   }
+
+  setActiveEntry = (city, current, hourly, daily) => {
+    this.setState({ log: 'entry set', activeEntry: city, currentWeather: current, hourly, daily })
+  }
+
   render() {
+    const { activeEntry, currentWeather, hourly, daily } = this.state
+
     return (
       <div className="App">
         <Header selectCity={this.selectCity} />
@@ -50,13 +61,16 @@ class App extends Component {
             <Col md={3} className='border-right'>
               <SideBar
                 cities={this.state.cities}
+                setActiveEntry={this.setActiveEntry}
               />
             </Col>
             <Col>
-              <Jumbotron className='mx-auto'>
-                <h2>Pawtucket</h2>
-                <p>Placeholder stuff</p>
-              </Jumbotron>
+              <Main
+                activeEntry={activeEntry}
+                currentWeather={currentWeather}
+                hourly={hourly}
+                daily={daily}
+              />
             </Col>
           </Row>
         </section>

@@ -19,7 +19,9 @@ class Header extends Component {
       params: {
         app_id: appId,
         app_code: appCode,
-        query: this.state.query
+        query: this.state.query,
+        maxresults: '10',
+        resultType: 'areas'
       }
     })
       .then(res => {

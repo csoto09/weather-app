@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import axios from 'axios'
-// import Suggestions from './Suggestions'
 import Autocomplete from 'react-autocomplete'
 const appId = 'xC6hMe06E2DQgu96GwYz'
 const appCode = 'xY0cgxHjRBvenfTSFF_y2A'

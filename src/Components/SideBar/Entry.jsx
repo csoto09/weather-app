@@ -11,7 +11,6 @@ class Entry extends Component {
     hourly: '',
     temp: '',
     summary: ''
-    // active: false
   }
 
   componentDidMount() {

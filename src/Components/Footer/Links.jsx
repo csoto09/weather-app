@@ -1,11 +1,13 @@
 import React from 'react'
+import Container from 'react-bootstrap/Container';
 
 const Links = () => {
-    return (
-        <div>
+  return (
+    <Container>
+      <img className='h-100 ' src="https://darksky.net/dev/img/attribution/poweredby-oneline.png" alt="Powered by Dark Sky" />
+    </Container>
 
-        </div>
-    )
+  )
 }
 
 export default Links

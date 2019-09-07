@@ -54,10 +54,10 @@ class App extends Component {
     const { activeEntry, currentWeather, hourly, daily } = this.state
 
     return (
-      <div className="App">
+      <div className="App h-100 ">
         <Header selectCity={this.selectCity} />
-        <section className='h-100'>
-          <Row className='h-100'>
+        <section className='mh-100'>
+          <Row className='mh-100'>
             <Col md={3} className='border-right'>
               <SideBar
                 cities={this.state.cities}
@@ -74,7 +74,7 @@ class App extends Component {
             </Col>
           </Row>
         </section>
-        <Footer />
+        <Footer className='footer' />
       </div>
     )
   }

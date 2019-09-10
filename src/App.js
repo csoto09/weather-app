@@ -7,8 +7,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import axios from 'axios'
 import Main from './Components/Main'
-const appId = 'xC6hMe06E2DQgu96GwYz'
-const appCode = 'xY0cgxHjRBvenfTSFF_y2A'
+const appId = process.env.REACT_APP_hereAppId
+const appCode = process.env.REACT_APP_hereAppCode
 
 class App extends Component {
   state = {
@@ -19,8 +19,13 @@ class App extends Component {
     daily: ''
   }
 
+  componentDidMount() {
+    console.log(process.env);
+
+  }
+
   selectCity = (val) => {
-    axios.get(`http://geocoder.api.here.com/6.2/geocode.json`, {
+    axios.get(`https://geocoder.api.here.com/6.2/geocode.json`, {
       params: {
         locationid: val,
         app_id: appId,

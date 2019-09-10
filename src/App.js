@@ -19,11 +19,6 @@ class App extends Component {
     daily: ''
   }
 
-  componentDidMount() {
-    console.log(process.env);
-
-  }
-
   selectCity = (val) => {
     axios.get(`https://geocoder.api.here.com/6.2/geocode.json`, {
       params: {

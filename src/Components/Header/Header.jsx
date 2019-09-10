@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import axios from 'axios'
 import Autocomplete from 'react-autocomplete'
-const appId = 'xC6hMe06E2DQgu96GwYz'
-const appCode = 'xY0cgxHjRBvenfTSFF_y2A'
+const appId = process.env.REACT_APP_hereAppId
+const appCode = process.env.REACT_APP_hereAppCode
+
 
 class Header extends Component {
   state = {
@@ -14,7 +15,7 @@ class Header extends Component {
   }
 
   getInfo = () => {
-    axios.get('http://autocomplete.geocoder.api.here.com/6.2/suggest.json', {
+    axios.get('https://autocomplete.geocoder.api.here.com/6.2/suggest.json', {
       params: {
         app_id: appId,
         app_code: appCode,

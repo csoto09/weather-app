@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Card from 'react-bootstrap/Card'
-const apiKey = process.env.REACT_APP_darkSkyKey
-const darkSky = process.env.REACT_APP_darkSkyUrl
 
 
 class Entry extends Component {
@@ -15,7 +13,12 @@ class Entry extends Component {
   }
 
   componentDidMount() {
-    axios.get(`${darkSky}/${apiKey}/${this.props.lat},${this.props.lng}?exclude=minutely,flags`)
+    axios.get('/api/darksky', {
+      params: {
+        lat: this.props.lat,
+        lng: this.props.lng
+      }
+    })
       .then(res => {
         const weather = res.data
         this.setState({

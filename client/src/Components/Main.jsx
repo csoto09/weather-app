@@ -2,6 +2,7 @@ import React from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import WeatherIcon from 'react-icons-weather';
 
+
 const Main = (props) => {
   if (props.currentWeather) {
     return (

@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const dotenv = require('dotenv').config();
-// const request = require('request');
 
 const app = express()
 
@@ -12,13 +11,11 @@ app.use(express.static(path.join(__dirname, 'client/build')))
 
 app.get('/api/darksky', (req, res) => {
   axios.get(`https://api.darksky.net/forecast/${process.env.darkSkyKey}/${req.query.lat},${req.query.lng}?exclude=minutely,flags`).then(response => {
-    console.log(req.query);
-
     const weather = response.data
     res.send(weather)
   })
     .catch(e => {
-      res.send(e)
+      console.log(`error`, e)
     })
 })
 

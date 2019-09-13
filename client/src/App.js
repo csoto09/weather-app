@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import axios from 'axios'
 import Main from './Components/Main'
+import ls from 'local-storage'
 const appId = process.env.REACT_APP_hereAppId
 const appCode = process.env.REACT_APP_hereAppCode
 
@@ -18,6 +19,13 @@ class App extends Component {
     hourly: '',
     daily: ''
   }
+
+  componentDidMount() {
+    this.setState({
+      cities: ls.get('cities') || []
+    })
+  }
+
 
   selectCity = (val) => {
     axios.get(`https://geocoder.api.here.com/6.2/geocode.json`, {
@@ -38,9 +46,12 @@ class App extends Component {
           lat: coords.latitude,
           lng: coords.longitude,
         }
+
+        const cities = [...this.state.cities, newCity]
         this.setState({
-          cities: [...this.state.cities, newCity]
+          cities
         })
+        ls.set('cities', cities)
       }).catch((err) => {
         console.log(err);
       });

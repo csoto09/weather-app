@@ -1,6 +1,5 @@
 import React from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
-// import Weather from './Entry/Weather'
 // import WeatherIcon from 'react-icons-weather';
 
 const Main = (props) => {

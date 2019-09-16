@@ -30,8 +30,6 @@ class App extends Component {
       params: { query }
     })
       .then(res => {
-        console.log(res.data);
-
         this.setState({
           results: res.data.features
         })

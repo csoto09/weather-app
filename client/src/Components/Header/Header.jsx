@@ -1,71 +1,48 @@
 import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
-import axios from 'axios'
 import Autocomplete from 'react-autocomplete'
-const appId = process.env.REACT_APP_hereAppId
-const appCode = process.env.REACT_APP_hereAppCode
 
 
 class Header extends Component {
   state = {
     query: '',
-    locationId: '',
-    results: [],
-    label: ''
+    error: null
   }
 
-  getInfo = () => {
-    axios.get('https://autocomplete.geocoder.api.here.com/6.2/suggest.json', {
-      params: {
-        app_id: appId,
-        app_code: appCode,
-        query: this.state.query,
-        maxresults: '10',
-        resultType: 'areas'
-      }
-    })
-      .then(res => {
-        this.setState({
-          results: res.data.suggestions
-        })
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
   handleChange = (e) => {
     this.setState({
-      label: e.target.value,
-      query: this.state.label
+      query: e.target.value
     }, () => {
-      if (this.state.query && this.state.query.length > 1) {
-        if (this.state.query.length % 2 === 0) {
-          this.getInfo()
+      const query = this.state.query
+
+      if (query && query.length > 3) {
+        if (query.length % 2 === 0) {
+          this.props.getResults(query)
         }
       }
     })
   }
 
-  handleSelect = (value, item) => {
+  handleSelect = (val, item) => {
     this.setState({
-      label: item.label,
-      locationId: value
+      query: '',
     })
-    this.props.selectCity(value)
+    this.props.selectCity(val, item)
   }
+
   render() {
     return (
       <Navbar sticky="top" bg="dark" variant="dark" >
         <Navbar.Brand>Weather by Bloc</Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">
           <Autocomplete
-            getItemValue={(item) => item.locationId}
-            items={this.state.results}
+            getItemValue={item => item.id}
+            items={this.props.results}
             renderItem={(item, isHighlighted) =>
-              <div style={{ background: isHighlighted ? 'lightgray' : 'white' }} key={item.locationId}>{item.label}</div>}
-            value={this.state.label}
+              <div style={{ background: isHighlighted ? 'lightgray' : 'white' }} key={item.id}>{item.place_name}</div>}
+            value={this.state.query}
             onChange={e => this.handleChange(e)}
-            onSelect={(value, item) => this.handleSelect(value, item)}
+            onSelect={(val, item) => this.handleSelect(val, item)}
           />
         </Navbar.Collapse>
       </Navbar>

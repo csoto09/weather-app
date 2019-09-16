@@ -35,9 +35,6 @@ class App extends Component {
         this.setState({ cities: [...this.state.cities, local] })
       })
     } else { console.log('geolocation is not available'); }
-
-
-
   }
 
   getResults = (query) => {
@@ -107,8 +104,6 @@ class App extends Component {
       </div>
     )
   }
-
-
 }
 
 export default App

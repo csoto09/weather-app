@@ -26,35 +26,50 @@ class App extends Component {
     })
   }
 
+  selectCity = (val, item) => {
+    console.log(item);
 
-  selectCity = (val) => {
-    axios.get(`https://geocoder.api.here.com/6.2/geocode.json`, {
-      params: {
-        locationid: val,
-        app_id: appId,
-        app_code: appCode,
-        jsonattributes: '1'
-      }
+    const coords = item.center || []
+    const newCity = {
+      label: item.place_name,
+      name: item.text,
+      lat: coords[1],
+      lng: coords[0]
+    }
+
+    const cities = [...this.state.cities, newCity]
+    this.setState({
+      cities
     })
-      .then((result) => {
-        const entry = result.data.response.view[0].result[0].location
-        const address = entry.address
-        const coords = entry.displayPosition
-        const newCity = {
-          label: address.label,
-          name: address.city,
-          lat: coords.latitude,
-          lng: coords.longitude,
-        }
+    ls.set('cities', cities)
+    // console.log("center", center)
+    // axios.get(`https://geocoder.api.here.com/6.2/geocode.json`, {
+    //   params: {
+    //     locationid: val,
+    //     app_id: appId,
+    //     app_code: appCode,
+    //     jsonattributes: '1'
+    //   }
+    // })
+    //   .then((result) => {
+    //     const entry = result.data.response.view[0].result[0].location
+    //     const address = entry.address
+    //     const coords = entry.displayPosition
+    //     const newCity = {
+    //       label: address.label,
+    //       name: address.city,
+    //       lat: coords.latitude,
+    //       lng: coords.longitude,
+    //     }
 
-        const cities = [...this.state.cities, newCity]
-        this.setState({
-          cities
-        })
-        ls.set('cities', cities)
-      }).catch((err) => {
-        console.log(err);
-      });
+    //     const cities = [...this.state.cities, newCity]
+    //     this.setState({
+    //       cities
+    //     })
+    //     ls.set('cities', cities)
+    //   }).catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
   setActiveEntry = (city, current, hourly, daily) => {
@@ -66,7 +81,9 @@ class App extends Component {
 
     return (
       <div className="App h-100 ">
-        <Header selectCity={this.selectCity} />
+        <Header
+          selectCity={this.selectCity}
+        />
         <section className='mh-100'>
           <Row className='mh-100'>
             <Col md={3} className='border-right'>

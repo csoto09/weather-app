@@ -7,16 +7,16 @@ class SideBar extends React.Component {
     cities: []
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.cities !== prevProps.cities) {
-      this.setState({ cities: [...this.props.cities] })
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.cities !== prevProps.cities) {
+  //     this.setState({ cities: [...this.props.cities] })
+  //   }
+  // }
 
   render() {
     return (
       <div>
-        {this.state.cities.map((city, index) =>
+        {this.props.cities.map((city, index) =>
           <Entry
             key={index}
             name={city.name}

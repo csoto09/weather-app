@@ -18,7 +18,22 @@ app.get('/api/darksky', (req, res) => {
       console.log(`error`, e)
     })
 })
-
+// https://api.mapbox.com/geocoding/v5/mapbox.places/${query}?access_token=${process.env.mapboxKey}
+app.get('/api/geocode', (req, res) => {
+  axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${req.query.query}.json`, {
+    params: {
+      access_token: process.env.mapboxKey,
+      autocomplete: true,
+      types: 'place,country,postcode,region',
+      language: 'en'
+    }
+  }).then(response => {
+    console.log(response.data);
+    res.send(response.data)
+  }).catch(e => {
+    console.error(e)
+  })
+})
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })

@@ -23,6 +23,18 @@ class App extends Component {
     this.setState({
       cities: ls.get('cities') || []
     })
+
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const local = {
+          label: "Current Location",
+          name: "Current Location",
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+        this.setState({ cities: [...this.state.cities, local] })
+      })
+    } else { console.log('geolocation is not available'); }
   }
 
   getResults = (query) => {
@@ -92,8 +104,6 @@ class App extends Component {
       </div>
     )
   }
-
-
 }
 
 export default App

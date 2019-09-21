@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react'
 import Links from './Links'
-// import Container from 'react-bootstrap/Container'
-class Footer extends Component {
-  render() {
-    return (
-      <footer className='footer'>
-        <Links />
-      </footer>
-    );
-  }
+
+const Footer = (props) => {
+  return (
+    <footer className='footer'>
+
+      <Links />
+    </footer>
+  )
 }
 
-export default Footer;
+export default Footer

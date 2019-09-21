@@ -12,6 +12,8 @@ const SideBar = (props) => {
           lat={city.lat}
           lng={city.lng}
           setActiveEntry={props.setActiveEntry}
+          tempC={props.tempC}
+          changeTemp={props.changeTemp}
         />
       )}
     </div>

@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
+import Button from 'react-bootstrap/Button'
 import Autocomplete from 'react-autocomplete'
+import Settings from './Settings'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCog } from '@fortawesome/free-solid-svg-icons'
 
 
 class Header extends Component {
@@ -34,6 +38,9 @@ class Header extends Component {
     return (
       <Navbar sticky="top" bg="dark" variant="dark" >
         <Navbar.Brand>Weather by Bloc</Navbar.Brand>
+        <Button variant="primary" onClick={this.props.toggleModal} className="justify-content-end">
+          <FontAwesomeIcon icon={faCog} />
+        </Button>
         <Navbar.Collapse className="justify-content-end">
           <Autocomplete
             getItemValue={item => item.id}
@@ -45,6 +52,14 @@ class Header extends Component {
             onSelect={(val, item) => this.handleSelect(val, item)}
           />
         </Navbar.Collapse>
+        <Settings
+          showModal={this.props.showModal}
+          toggleModal={this.props.toggleModal}
+          toggleTemp={this.props.toggleTemp}
+          tempC={this.props.tempC}
+          toggleTime={this.props.toggleTime}
+          milTime={this.props.milTime}
+        />
       </Navbar>
     )
   }

@@ -6,13 +6,12 @@ import Daily from './Entry/Daily';
 
 
 const Main = (props) => {
-  const items = []
+  const unit = (props.tempC ? 'C' : 'F')
+  const tempF = props.currentWeather.temperature
+  const tempC = (tempF - 32) * 5 / 9
+  const temp = (props.tempC ? tempC : tempF)
   const days = props.daily.data
-  console.log(days);
 
-  // for (let i = 0; i <= 4; i++) {
-  //   items.push(<Daily i={i} forecast={`day`} />)
-  // }
   if (props.currentWeather) {
     return (
       <section>
@@ -20,7 +19,7 @@ const Main = (props) => {
           <h2>{props.activeEntry}</h2>
           <h3>
             <WeatherIcon name='darksky' iconId={props.currentWeather.icon} /><span> </span>
-            {Math.round(props.currentWeather.temperature) + '\u00B0'}F
+            {Math.round(temp) + '\u00B0' + unit}
           </h3>
           <h4>{props.currentWeather.summary}</h4>
           <p>data current as of {moment.unix(props.currentWeather.time).format()}</p>

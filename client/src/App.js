@@ -16,12 +16,17 @@ class App extends Component {
     currentWeather: '',
     hourly: '',
     daily: '',
-    results: []
+    results: [],
+    tempC: false,
+    milTime: false,
+    showModal: false
   }
 
   componentDidMount() {
     this.setState({
-      cities: ls.get('cities') || []
+      cities: ls.get('cities') || [],
+      tempC: ls.get('tempC') || false,
+      milTime: ls.get('milTime') || false
     })
 
     if ("geolocation" in navigator) {
@@ -72,8 +77,20 @@ class App extends Component {
     this.setState({ activeEntry, currentWeather, hourly, daily })
   }
 
+  toggleTemp = (tempC) => {
+    this.setState({ tempC })
+    ls.set('tempC', tempC)
+  }
+  toggleTime = (milTime) => {
+    this.setState({ milTime })
+    ls.set('milTime', milTime)
+  }
+  toggleModal = (showModal) => {
+    this.setState({ showModal })
+  }
+
   render() {
-    const { activeEntry, currentWeather, hourly, daily } = this.state
+    const { activeEntry, currentWeather, hourly, daily, tempC } = this.state
 
     return (
       <div className="App h-100 ">
@@ -81,6 +98,12 @@ class App extends Component {
           getResults={this.getResults}
           selectCity={this.selectCity}
           results={this.state.results}
+          toggleModal={this.toggleModal}
+          showModal={this.state.showModal}
+          toggleTemp={this.toggleTemp}
+          tempC={this.state.tempC}
+          toggleTime={this.toggleTime}
+          milTime={this.state.milTime}
         />
         <section className='mh-100'>
           <Row className='mh-100'>
@@ -88,6 +111,8 @@ class App extends Component {
               <SideBar
                 cities={this.state.cities}
                 setActiveEntry={this.setActiveEntry}
+                tempC={tempC}
+                changeTemp={this.changeTemp}
               />
             </Col>
             <Col>
@@ -96,11 +121,14 @@ class App extends Component {
                 currentWeather={currentWeather}
                 hourly={hourly}
                 daily={daily}
+                tempC={tempC}
               />
             </Col>
           </Row>
         </section>
-        <Footer className='footer' />
+        <Footer className='footer'
+
+        />
       </div>
     )
   }

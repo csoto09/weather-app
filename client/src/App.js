@@ -24,7 +24,9 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({
-      cities: ls.get('cities') || []
+      cities: ls.get('cities') || [],
+      tempC: ls.get('tempC') || false,
+      milTime: ls.get('milTime') || false
     })
 
     if ("geolocation" in navigator) {
@@ -77,9 +79,11 @@ class App extends Component {
 
   toggleTemp = (tempC) => {
     this.setState({ tempC })
+    ls.set('tempC', tempC)
   }
   toggleTime = (milTime) => {
     this.setState({ milTime })
+    ls.set('milTime', milTime)
   }
   toggleModal = (showModal) => {
     this.setState({ showModal })

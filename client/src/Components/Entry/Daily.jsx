@@ -1,22 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import moment from 'moment';
+import Card from 'react-bootstrap/Card';
+import WeatherIcon from 'react-icons-weather';
 
-
-
-class Daily extends Component {
-  render() {
-    const forecast = this.props.forecast
-    const { time, summary, icon, temperatureHigh, temperatureLow } = this.props.forecast
-    console.log(forecast);
-
-    return (
-      <div className='container border'>
-        {moment.unix(time).format('ddd')}: {temperatureHigh}
-      </div>
-    )
-  }
-
+const Daily = (props) => {
+  const { time, temperatureHigh, temperatureLow, summary, icon } = props.day
+  const formatTemp = props.formatTemp
+  return (
+    <Card bg="light">
+      <Card.Header>{moment.unix(time).format('dddd Do')}</Card.Header>
+      <Card.Body>
+        <Card.Title>
+          <WeatherIcon name='darksky' iconId={icon} />{formatTemp(temperatureHigh)}
+        </Card.Title>
+        <Card.Subtitle>Lo: {formatTemp(temperatureLow)}</Card.Subtitle>
+        <Card.Text>{summary}</Card.Text>
+      </Card.Body>
+    </Card>
+  )
 }
-
 
 export default Daily

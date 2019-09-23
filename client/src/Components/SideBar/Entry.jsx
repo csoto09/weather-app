@@ -41,29 +41,16 @@ class Entry extends Component {
   }
 
   render() {
-    const unit = (this.props.tempC ? 'C' : 'F')
-    const tempF = this.state.temp
-    const tempC = (tempF - 32) * 5 / 9
-    const temp = (this.props.tempC ? tempC : tempF)
-
+    const { name, label, formatTemp } = this.props
+    const { icon, temp, summary } = this.state
     return (
       <Card onClick={this.handleClick}>
         <Card.Body>
-          <div>{this.props.name ? this.props.name : this.props.label}: {
-            this.state.icon ?
-              (<WeatherIcon name='darksky' iconId={this.state.icon} />)
-              : ''
-          } {Math.round(temp) + '\u00B0' + unit}</div>
-          <div>{this.state.summary}</div>
+          <div>{name ? name : label}: {icon ? (<WeatherIcon name='darksky' iconId={icon} />) : ''} {formatTemp(temp)}</div>
+          <div>{summary}</div>
         </Card.Body>
-
       </Card>
-
-
-
-
     )
-
   }
 }
 

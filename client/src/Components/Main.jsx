@@ -1,15 +1,12 @@
 import React from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import WeatherIcon from 'react-icons-weather';
-import moment from 'moment'
 import Daily from './Entry/Daily';
-
+import CardGroup from 'react-bootstrap/CardGroup'
 
 const Main = (props) => {
-  const unit = (props.tempC ? 'C' : 'F')
-  const tempF = props.currentWeather.temperature
-  const tempC = (tempF - 32) * 5 / 9
-  const temp = (props.tempC ? tempC : tempF)
+  const { icon, temperature, summary } = props.currentWeather
+  const formatTemp = props.formatTemp
   const days = props.daily.data
 
   if (props.currentWeather) {
@@ -18,16 +15,19 @@ const Main = (props) => {
         <Jumbotron className='mx-auto'>
           <h2>{props.activeEntry}</h2>
           <h3>
-            <WeatherIcon name='darksky' iconId={props.currentWeather.icon} /><span> </span>
-            {Math.round(temp) + '\u00B0' + unit}
+            <WeatherIcon name='darksky' iconId={icon} /><span> </span>
+            {formatTemp(temperature)}
           </h3>
-          <h4>{props.currentWeather.summary}</h4>
-          <p>data current as of {moment.unix(props.currentWeather.time).format()}</p>
-
-          {days.map((day, index) =>
-            <Daily key={index} forecast={day} />
-          )}
-
+          <h4>{summary}</h4>
+          <CardGroup>
+            {days.slice(1, 6).map((day, index) =>
+              <Daily
+                key={index}
+                day={day}
+                formatTemp={formatTemp}
+              />
+            )}
+          </CardGroup>
         </Jumbotron>
       </section >
     )

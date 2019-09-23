@@ -81,6 +81,12 @@ class App extends Component {
     this.setState({ tempC })
     ls.set('tempC', tempC)
   }
+  formatTemp = (temp) => {
+    if (this.state.tempC) {
+      return Math.round((temp - 32) * 5 / 9) + '\u00B0' + 'C'
+    }
+    return Math.round(temp) + '\u00B0' + 'F'
+  }
   toggleTime = (milTime) => {
     this.setState({ milTime })
     ls.set('milTime', milTime)
@@ -90,29 +96,28 @@ class App extends Component {
   }
 
   render() {
-    const { activeEntry, currentWeather, hourly, daily, tempC } = this.state
+    const { activeEntry, currentWeather, hourly, daily, tempC, results, showModal, milTime, cities } = this.state
 
     return (
       <div className="App h-100 ">
         <Header
           getResults={this.getResults}
           selectCity={this.selectCity}
-          results={this.state.results}
+          results={results}
           toggleModal={this.toggleModal}
-          showModal={this.state.showModal}
+          showModal={showModal}
           toggleTemp={this.toggleTemp}
-          tempC={this.state.tempC}
+          tempC={tempC}
           toggleTime={this.toggleTime}
-          milTime={this.state.milTime}
+          milTime={milTime}
         />
         <section className='mh-100'>
           <Row className='mh-100'>
             <Col md={3} className='border-right'>
               <SideBar
-                cities={this.state.cities}
+                cities={cities}
                 setActiveEntry={this.setActiveEntry}
-                tempC={tempC}
-                changeTemp={this.changeTemp}
+                formatTemp={this.formatTemp}
               />
             </Col>
             <Col>
@@ -122,6 +127,7 @@ class App extends Component {
                 hourly={hourly}
                 daily={daily}
                 tempC={tempC}
+                formatTemp={this.formatTemp}
               />
             </Col>
           </Row>

@@ -37,7 +37,7 @@ class App extends Component {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
-        this.setState({ cities: [...this.state.cities, local] })
+        this.setState({ local })
       })
     } else { console.log('geolocation is not available'); }
   }
@@ -65,12 +65,24 @@ class App extends Component {
       label: item.place_name,
       name: item.text,
       lat: coords[1],
-      lng: coords[0]
+      lng: coords[0],
+      entryId: item.id
     }
 
     const cities = [...this.state.cities, newCity]
     this.setState({ cities })
     ls.set('cities', cities)
+  }
+
+  deleteCity = (city) => {
+    this.setState((prevState) => {
+      const array = [...prevState.cities].slice()
+      const newCities = array.filter((el) => {
+        return city !== el.entryId
+      })
+      ls.set('cities', newCities)
+      return { cities: newCities }
+    })
   }
 
   setActiveEntry = (activeEntry, currentWeather, hourly, daily) => {
@@ -98,6 +110,7 @@ class App extends Component {
   render() {
     const { activeEntry, currentWeather, hourly, daily, tempC, results, showModal, milTime, cities } = this.state
 
+    // const locCities = cities.unshift(local)
     return (
       <div className="App h-100 ">
         <Header
@@ -118,6 +131,8 @@ class App extends Component {
                 cities={cities}
                 setActiveEntry={this.setActiveEntry}
                 formatTemp={this.formatTemp}
+                deleteCity={this.deleteCity}
+                local={this.state.local}
               />
             </Col>
             <Col>

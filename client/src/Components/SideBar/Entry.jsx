@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import Card from 'react-bootstrap/Card'
 import WeatherIcon from 'react-icons-weather';
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+
 
 class Entry extends Component {
   state = {
@@ -40,16 +45,29 @@ class Entry extends Component {
     this.props.setActiveEntry(this.props.label, this.state.currentWeather, this.state.hourly, this.state.daily)
   }
 
+  handleDelete = () => {
+    this.props.deleteCity(this.props.entryId)
+  }
+
   render() {
     const { name, label, formatTemp } = this.props
     const { icon, temp, summary } = this.state
     return (
-      <Card onClick={this.handleClick}>
-        <Card.Body>
-          <div>{name ? name : label}: {icon ? (<WeatherIcon name='darksky' iconId={icon} />) : ''} {formatTemp(temp)}</div>
-          <div>{summary}</div>
-        </Card.Body>
-      </Card>
+      <Container>
+        <Card onClick={this.handleClick}>
+          <Row>
+            <Col>
+
+              <Card.Body>
+                <div>{name ? name : label}: {icon ? (<WeatherIcon name='darksky' iconId={icon} />) : ''} {formatTemp(temp)}</div>
+                <div>{summary}</div>
+              </Card.Body>
+
+            </Col>
+            {this.props.entryId !== null ? (<Col xs={2}><Button variant='link' onClick={this.handleDelete}>X</Button></Col>) : ''}
+          </Row>
+        </Card>
+      </Container>
     )
   }
 }

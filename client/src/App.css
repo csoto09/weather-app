@@ -86,3 +86,14 @@ input {
   width: auto;
   height: inherit 
 }
+
+.deleteButton {
+  max-width: initial;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.entryCard {
+  margin-left: 0px;
+  margin-right: 0px;
+}

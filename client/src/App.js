@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col'
 import axios from 'axios'
 import Main from './Components/Main'
 import ls from 'local-storage'
+import { DragDropContext } from 'react-beautiful-dnd'
 
 class App extends Component {
   state = {
@@ -107,10 +108,29 @@ class App extends Component {
     this.setState({ showModal })
   }
 
+  onDragEnd = result => {
+    const { destination, source, draggableId } = result
+
+    if (!destination) { return }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) { return }
+
+    const newCities = Array.from(this.state.cities)
+    const newCity = newCities.filter((city) => {
+      return city.entryId === draggableId
+    })
+
+    newCities.splice(source.index, 1)
+    newCities.splice(destination.index, 0, newCity[0])
+
+    ls.set('cities', newCities)
+    this.setState({ cities: newCities })
+  }
+
   render() {
     const { activeEntry, currentWeather, hourly, daily, tempC, results, showModal, milTime, cities } = this.state
-
-    // const locCities = cities.unshift(local)
     return (
       <div className="App h-100 ">
         <Header
@@ -127,13 +147,15 @@ class App extends Component {
         <section className='mh-100'>
           <Row className='mh-100'>
             <Col md={3} className='border-right'>
-              <SideBar
-                cities={cities}
-                setActiveEntry={this.setActiveEntry}
-                formatTemp={this.formatTemp}
-                deleteCity={this.deleteCity}
-                local={this.state.local}
-              />
+              <DragDropContext onDragEnd={this.onDragEnd}>
+                <SideBar
+                  cities={cities}
+                  setActiveEntry={this.setActiveEntry}
+                  formatTemp={this.formatTemp}
+                  deleteCity={this.deleteCity}
+                  local={this.state.local}
+                />
+              </DragDropContext>
             </Col>
             <Col>
               <Main

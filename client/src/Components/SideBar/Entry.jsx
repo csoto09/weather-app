@@ -55,7 +55,7 @@ class Entry extends Component {
     return (
       <Container>
         <Card onClick={this.handleClick}>
-          <Row>
+          <Row className='entryCard'>
             <Col>
 
               <Card.Body>
@@ -64,7 +64,7 @@ class Entry extends Component {
               </Card.Body>
 
             </Col>
-            {this.props.entryId !== null ? (<Col xs={2}><Button variant='link' onClick={this.handleDelete}>X</Button></Col>) : ''}
+            {this.props.entryId !== null ? (<Col xs={1} className='deleteButton'><Button variant='link' onClick={this.handleDelete}>X</Button></Col>) : ''}
           </Row>
         </Card>
       </Container>

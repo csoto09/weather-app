@@ -31,7 +31,7 @@ const Main = (props) => {
     )
   } else {
     return (
-      <Jumbotron className='mx-auto'>
+      <Jumbotron className='mx-auto text-center'>
         <h2>Weather by Bloc</h2>
       </Jumbotron>
     )

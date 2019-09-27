@@ -1,7 +1,6 @@
 import React from 'react'
 import Feedback from './Feedback'
 import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
 
 const Links = (props) => {
   return (

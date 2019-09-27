@@ -50,6 +50,7 @@ class Header extends Component {
             value={this.state.query}
             onChange={e => this.handleChange(e)}
             onSelect={(val, item) => this.handleSelect(val, item)}
+            inputProps={{ 'placeholder': 'Search location, city, zip...' }}
           />
         </Navbar.Collapse>
         <Settings

@@ -9,7 +9,7 @@ const Container = styled.div``
 const SideBar = (props) => {
   const { local, cities } = props
   return (
-    <Container>
+    <Container className='border-right'>
       {local ? (
         <Entry
           key='123'

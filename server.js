@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const dotenv = require('dotenv').config();
-
 const app = express()
 
 // static files from React
@@ -24,7 +23,6 @@ app.get('/api/geocode', (req, res) => {
 })
 
 //revgeocoding data from Mapbox
-
 app.get('/api/reverse-geocode', (req, res) => {
   axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${req.query.lng},${req.query.lat}.json`, {
     params: {
@@ -38,8 +36,6 @@ app.get('/api/reverse-geocode', (req, res) => {
       console.error(err);
     });
 })
-
-
 
 //weather by Dark Sky
 app.get('/api/darksky', (req, res) => {

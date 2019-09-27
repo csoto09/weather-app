@@ -40,7 +40,6 @@ class App extends Component {
           }
         })
           .then((result) => {
-            console.log(result.data.features[0]);
             const { place_name, text } = result.data.features[0]
             const local = {
               label: place_name || "Current Location",

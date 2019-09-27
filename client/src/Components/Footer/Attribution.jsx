@@ -1,12 +1,4 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container';
-import styled from 'styled-components'
-
-// const Container = styled.div`
-// display:flex;
-// width: auto
-// `
-
 
 const Attribution = () => {
   return (

@@ -1,12 +1,17 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container';
+import Feedback from './Feedback'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 
-const Links = () => {
+const Links = (props) => {
   return (
-    <Container>
-      <img className='h-100 ' src="https://darksky.net/dev/img/attribution/poweredby-oneline.png" alt="Powered by Dark Sky" />
-    </Container>
-
+    <div>
+      <Button variant="primary" onClick={props.toggleFeedback}>Contact Us</Button>
+      <Feedback
+        showFeedback={props.showFeedback}
+        toggleFeedback={props.toggleFeedback}
+      />
+    </div>
   )
 }
 

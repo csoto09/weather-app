@@ -11,7 +11,7 @@ import styled from 'styled-components'
 const Attribution = () => {
   return (
     <div className='justify-content-end pr-2'>
-      <img className='mh-100 ' src="https://darksky.net/dev/img/attribution/poweredby-oneline.png" alt="Powered by Dark Sky" />
+      <img className='h-100 ' src="https://darksky.net/dev/img/attribution/poweredby-oneline.png" alt="Powered by Dark Sky" />
     </div>
 
   )

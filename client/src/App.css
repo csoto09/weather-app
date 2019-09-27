@@ -1,6 +1,6 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -76,6 +76,12 @@ input {
   height: 60px;
   line-height: 60px;
   background-color: #f5f5f5;
+  display: flex
+}
+
+footer > div {
+  width: 50%;
+  display: flex
 }
 
 .attr {
@@ -96,4 +102,16 @@ input {
 .entryCard {
   margin-left: 0px;
   margin-right: 0px;
+}
+
+label.settings {
+  display: flex
+}
+
+label.settings > span {
+  margin-right: auto
+}
+
+section {
+  flex: 1 0 auto;
 }

@@ -20,7 +20,8 @@ class App extends Component {
     results: [],
     tempC: false,
     milTime: false,
-    showModal: false
+    showModal: false,
+    showFeedback: false
   }
 
   componentDidMount() {
@@ -104,8 +105,11 @@ class App extends Component {
     this.setState({ milTime })
     ls.set('milTime', milTime)
   }
-  toggleModal = (showModal) => {
-    this.setState({ showModal })
+  toggleModal = () => {
+    this.setState({ showModal: !this.state.showModal })
+  }
+  toggleFeedback = () => {
+    this.setState({ showFeedback: !this.state.showFeedback })
   }
 
   onDragEnd = result => {
@@ -132,7 +136,7 @@ class App extends Component {
   render() {
     const { activeEntry, currentWeather, hourly, daily, tempC, results, showModal, milTime, cities } = this.state
     return (
-      <div className="App h-100 ">
+      <div className="App">
         <Header
           getResults={this.getResults}
           selectCity={this.selectCity}
@@ -144,9 +148,9 @@ class App extends Component {
           toggleTime={this.toggleTime}
           milTime={milTime}
         />
-        <section className='mh-100'>
-          <Row className='mh-100'>
-            <Col md={3} className='border-right'>
+        <section>
+          <Row>
+            <Col md={3}>
               <DragDropContext onDragEnd={this.onDragEnd}>
                 <SideBar
                   cities={cities}
@@ -165,12 +169,14 @@ class App extends Component {
                 daily={daily}
                 tempC={tempC}
                 formatTemp={this.formatTemp}
+                className='border-left'
               />
             </Col>
           </Row>
         </section>
         <Footer className='footer'
-
+          toggleFeedback={this.toggleFeedback}
+          showFeedback={this.state.showFeedback}
         />
       </div>
     )

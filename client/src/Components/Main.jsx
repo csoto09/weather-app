@@ -11,33 +11,29 @@ const Main = (props) => {
 
   if (props.currentWeather) {
     return (
-      <section>
-        <Jumbotron className='mx-auto'>
-          <h2>{props.activeEntry}</h2>
-          <h3>
-            <WeatherIcon name='darksky' iconId={icon} /><span> </span>
-            {formatTemp(temperature)}
-          </h3>
-          <h4>{summary}</h4>
-          <CardGroup>
-            {days.slice(1, 6).map((day, index) =>
-              <Daily
-                key={index}
-                day={day}
-                formatTemp={formatTemp}
-              />
-            )}
-          </CardGroup>
-        </Jumbotron>
-      </section >
+      <Jumbotron className='mx-auto'>
+        <h2>{props.activeEntry}</h2>
+        <h3>
+          <WeatherIcon name='darksky' iconId={icon} /><span> </span>
+          {formatTemp(temperature)}
+        </h3>
+        <h4>{summary}</h4>
+        <CardGroup>
+          {days.slice(1, 6).map((day, index) =>
+            <Daily
+              key={index}
+              day={day}
+              formatTemp={formatTemp}
+            />
+          )}
+        </CardGroup>
+      </Jumbotron>
     )
   } else {
     return (
-      <section>
-        <Jumbotron className='mx-auto'>
-          <h2>Weather by Bloc</h2>
-        </Jumbotron>
-      </section>
+      <Jumbotron className='mx-auto'>
+        <h2>Weather by Bloc</h2>
+      </Jumbotron>
     )
   }
 

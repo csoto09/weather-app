@@ -9,12 +9,12 @@ const Settings = (props) => {
         <Modal.Title>Settings</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <label>
+        <label className='settings'>
           <span>Celsius?</span>
           <Switch onChange={props.toggleTemp} checked={props.tempC} />
         </label><br />
 
-        <label>
+        <label className='settings'>
           <span>24-hr?</span>
           <Switch onChange={props.toggleTime} checked={props.milTime} />
         </label>

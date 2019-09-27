@@ -33,13 +33,25 @@ class App extends Component {
 
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
-        const local = {
-          label: "Current Location",
-          name: "Current Location",
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }
-        this.setState({ local })
+        axios.get('/api/reverse-geocode', {
+          params: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
+        })
+          .then((result) => {
+            console.log(result.data.features[0]);
+            const { place_name, text } = result.data.features[0]
+            const local = {
+              label: place_name || "Current Location",
+              name: text || "Current Location",
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            }
+            this.setState({ local })
+          }).catch((err) => {
+            console.error(err);
+          });
       })
     } else { console.log('geolocation is not available'); }
   }

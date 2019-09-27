@@ -23,6 +23,23 @@ app.get('/api/geocode', (req, res) => {
   })
 })
 
+//revgeocoding data from Mapbox
+
+app.get('/api/reverse-geocode', (req, res) => {
+  axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${req.query.lng},${req.query.lat}.json`, {
+    params: {
+      access_token: process.env.mapboxKey,
+      types: 'place'
+    }
+  })
+    .then((result) => {
+      res.send(result.data)
+    }).catch((err) => {
+      console.error(err);
+    });
+})
+
+
 
 //weather by Dark Sky
 app.get('/api/darksky', (req, res) => {

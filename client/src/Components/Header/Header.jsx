@@ -19,10 +19,8 @@ class Header extends Component {
     }, () => {
       const query = this.state.query
 
-      if (query && query.length > 3) {
-        if (query.length % 2 === 0) {
-          this.props.getResults(query)
-        }
+      if (query && query.length > 2) {
+        this.props.getResults(query)
       }
     })
   }

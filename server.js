@@ -13,7 +13,8 @@ app.get('/api/geocode', (req, res) => {
     params: {
       access_token: process.env.mapboxKey,
       autocomplete: true,
-      types: 'place,country,postcode,region'
+      types: 'place,country,postcode,region',
+      language: 'en'
     }
   }).then(response => {
     res.send(response.data)

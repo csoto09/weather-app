@@ -3,14 +3,10 @@
   "version": "1.0.0",
   "main": "server.js",
   "license": "MIT",
-  "engines": {
-    "node": "15.x",
-    "npm": "7.x"
-  },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "dotenv": "^8.1.0",
-    "express": "^4.17.1"
+  "devDependencies": {
+    "axios": "^0.25.0",
+    "dotenv": "^15.0.0",
+    "express": "^4.17.2"
   },
   "scripts": {
     "start": "node server.js",

@@ -1,7 +1,8 @@
 <!--
---- Readme.md Snippet without images Start ---
+&lt;--- Readme.md Snippet without images Start ---&gt;
 ## Tech Stack
 csoto09/weather-app is built on the following main stack:
+
 - [React](https://reactjs.org/) – Javascript UI Libraries
 - [Bootstrap](http://getbootstrap.com/) – Front-End Frameworks
 - [ExpressJS](http://expressjs.com/) – Microframeworks (Backend)
@@ -14,11 +15,13 @@ csoto09/weather-app is built on the following main stack:
 - [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) – JavaScript Framework Components
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet without images End ---
 
---- Readme.md Snippet with images Start ---
+&lt;--- Readme.md Snippet without images End ---&gt;
+
+&lt;--- Readme.md Snippet with images Start ---&gt;
 ## Tech Stack
 csoto09/weather-app is built on the following main stack:
+
 - <img width='25' height='25' src='https://img.stackshare.io/service/1020/OYIaJ1KK.png' alt='React'/> [React](https://reactjs.org/) – Javascript UI Libraries
 - <img width='25' height='25' src='https://img.stackshare.io/service/1101/C9QJ7V3X.png' alt='Bootstrap'/> [Bootstrap](http://getbootstrap.com/) – Front-End Frameworks
 - <img width='25' height='25' src='https://img.stackshare.io/service/1163/hashtag.png' alt='ExpressJS'/> [ExpressJS](http://expressjs.com/) – Microframeworks (Backend)
@@ -31,14 +34,15 @@ csoto09/weather-app is built on the following main stack:
 - <img width='25' height='25' src='https://img.stackshare.io/service/9878/react-beautiful-dnd-logo.png' alt='react-beautiful-dnd'/> [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) – JavaScript Framework Components
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet with images End ---
+
+&lt;--- Readme.md Snippet with images End ---&gt;
 -->
 <div align="center">
 
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [csoto09/weather-app](https://github.com/csoto09/weather-app)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|25<br/>Tools used|11/17/23 <br/>Report generated|
+|25<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
